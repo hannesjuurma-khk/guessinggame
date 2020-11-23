@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Guess The Number</title>
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container w-50">
+
+    <h2 class="text-center mb-3">Guess the number!</h2>
+
+    <form>
+      <div class="form-group ml-auto mr-auto">
+        <input type="number" id="guess" class="form-control" placeholder="Enter a number...">
+        <small class="form-text text-muted">The guess must be between 0 and 100!</small>
+      </div>
+      <div class="text-center">
+        <button type="submit" id="submitbtn" class="btn btn-primary w-25">Guess!</button>
+      </div>
+    </form>
+
+    <div id="result" class="mt text-center mt-3"></div>
+</div>
+<script>
+// Create a variable, which stores a randomly generated number between 0 and 100.
+let correctNumber = getRandomInt(100);
+
+// Create an event listener for the guessing button.
+document.getElementById("submitbtn").addEventListener("click", function(event) {
+  event.preventDefault();
+  // Every click, call the guessNumber function with the user's input value.
+  guessNumber(document.getElementById("guess").value);
+});
+
+function guessNumber(number) {
+  // Check whether the user's input is out of the bounds.
+  if (number > 100 || number < 0) {
+    document.getElementById("result").innerHTML="You should enter a number between 0 and 100!";
+  } else {
+    // If the user's input is in bounds, return an answer based on the guess.
+    if (number == correctNumber) {
+      document.getElementById("result").innerHTML="Your guess was right!"
+    } else if (number > correctNumber){
+      document.getElementById("result").innerHTML="Your guess was not correct! Try guessing a bit less."
+    } else if (number < correctNumber) {
+      document.getElementById("result").innerHTML="Your guess was not correct! Try guessing a bit more."
+    }
+  }
+}
+
+// Function, which randomly generates a number between 0 and the max number parameter value.
+function getRandomInt(max) {
+  return Math.floor(Math.random() * (Math.floor(max) + 1));
+}
+</script>
+</body>
+</html>
