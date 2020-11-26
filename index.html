@@ -36,22 +36,24 @@
     <div id="result" class="mt text-center mt-3"></div>
 </div>
 <script>
-// Create a variable, which stores a randomly generated number between 0 and 100.
+
+// Creates a variable, which stores a randomly generated number between 0 and 100.
 let correctNumber = getRandomInt(100);
 
-// Create an event listener for the guessing button.
+// Creates an event listener for the guessing button.
 document.getElementById("submitbtn").addEventListener("click", function(event) {
   event.preventDefault();
-  // Every click, call the guessNumber function with the user's input value.
+  // Every click, calls the guessNumber function with the user's input value.
   guessNumber(document.getElementById("guess").value);
 });
 
 function guessNumber(number) {
-  // Check whether the user's input is out of the bounds.
+
+  // Checks whether the user's input is out of the bounds.
   if (number > 100 || number < 0) {
     document.getElementById("result").innerHTML="You should enter a number between 0 and 100!";
   } else {
-    // If the user's input is in bounds, return an answer based on the guess.
+    // If the user's input is in bounds, returns an answer based on the guess.
     if (number == correctNumber) {
       document.getElementById("result").innerHTML="Your guess was right!"
     } else if (number > correctNumber){
@@ -62,7 +64,7 @@ function guessNumber(number) {
   }
 }
 
-// Function, which randomly generates a number between 0 and the max number parameter value.
+// Returns randomly generated number between 0 and the max number parameter value.
 function getRandomInt(max) {
   return Math.floor(Math.random() * (Math.floor(max) + 1));
 }
